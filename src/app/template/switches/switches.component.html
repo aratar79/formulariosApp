@@ -2,6 +2,97 @@
 <hr>
 
 <form #miFormularioSwitches="ngForm">
+    <!-- Radio -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Género</label>
+        <div class="col-sm-9">
+            <div class="form-check">
+                <input class="form-check-input" 
+                       type="radio" 
+                       name="radioGenero" 
+                       value="M"
+                       [(ngModel)]="persona.genero"
+                       id="masculino"
+                       required>
+                <label class="form-check-label" for="masculino">
+                    Masculino
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" 
+                       type="radio" 
+                       name="radioGenero" 
+                       value="F"
+                       [(ngModel)]="persona.genero"
+                       id="femenino"
+                       required>
+                <label class="form-check-label" for="femenino">
+                    Femenino
+                </label>
+            </div>
+        </div>
+    </div>
 
+    <!-- Switches -->
+    <div class="row mb-3">
+        <div class="col-sm-3 col-form-label">Notificaciones</div>
+        <div class="col-sm-9">
+            <div class="form-check form-switch mt-2">
+                <input class="form-check-input" 
+                       type="checkbox" 
+                       role="switch" 
+                       [(ngModel)]="persona.notificaciones"
+                       name="notificaciones"
+                       id="notificaciones">
+                <label class="form-check-label" for="notificaciones">Notificaciones</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checks -->
+    <div class="row mb-3">
+        <div class="col-sm-3 col-form-label">Términos y condiciones</div>
+        <div class="col-sm-9">
+            <div class="form-check mt-2">
+                <input class="form-check-input" 
+                       type="checkbox" 
+                       name="terminosYcondiciones"
+                       [(ngModel)]="terminosYcondiciones"
+                       id="terminos"
+                       required>
+                <label class="form-check-label" for="terminos">
+                  Términos y condiciones de uso
+                </label>
+              </div>
+        </div>
+    </div>
+
+    <!-- Botón Submit -->
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    [disabled]="miFormularioSwitches.invalid">
+                Guardar
+            </button>
+        </div>
+    </div>
 </form>
 
+<h5>Valores del Formulario</h5>
+<pre>{{miFormularioSwitches.value | json}}</pre>
+<br>
+
+<h5>Valores de persona</h5>
+<pre>{{ persona | json }}</pre>
+<br>
+
+<h5>Errores terminos</h5>
+<pre>{{ errores | json }}</pre>
+<br>
+
+<h5>Valid</h5>
+<pre>{{miFormularioSwitches.valid}}</pre>
+<br>
+
+<h5>Condiciones</h5>
+<pre>{{miFormularioSwitches.errors}}</pre>
