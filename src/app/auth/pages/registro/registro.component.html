@@ -1,1 +1,107 @@
-<p>registro works!</p>
+<!-- Importar en el modulos los formularios reactivos, allà donde vayan a ser usuados(módulo), en este caso auth module -->
+<h2>Validaciones Reactivas: <small>Registro del usuario</small></h2>
+<hr>
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="submitFormulario()" [formGroup]="miFormulario">
+
+            <!-- Nombre -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                            class="form-control"
+                            formControlName="nombre"
+                            placeholder="nombre del usuario">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('nombre')">
+                        Debe ser en formato nombre y apellido
+                    </span>
+                </div>
+            </div>
+
+            <!-- eMail -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">eMail</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                            class="form-control"
+                            formControlName="email"
+                            placeholder="eMail del usuario">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('email')">
+                        El correo es obligatorio
+                    </span>
+                </div>
+            </div>
+
+            <!-- Usuario -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Alias Usuario</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                            class="form-control"
+                            formControlName="username"
+                            placeholder="alias del usuario">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('username')">
+                        el username no puede ser aratar79
+                    </span>
+                </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Contraseña Usuario</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                            class="form-control"
+                            formControlName="password"
+                            placeholder="contraseña del usuario">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('password')">
+                        Debe introducir una contraseña de mínimo 6 caracteres
+                    </span>
+                </div>
+            </div>
+
+            <!-- Confirmación de Contraseña -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Confirmar</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                            class="form-control"
+                            formControlName="password2"
+                            placeholder="confirmar contraseña">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('password2')">
+                        La contraseña debe ser la misma
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary float-end">
+                        Crear
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<h5>Form valid: {{ miFormulario.valid }}</h5>
+<h5>Form errors: {{ miFormulario.errors | json }}</h5>
+
+
+<h5>Nombre: </h5>
+<pre>{{ miFormulario.get('nombre')?.errors | json }}</pre>
+
+<h5>email: </h5>
+<pre>{{ miFormulario.get('email')?.errors | json }}</pre>
+
+<h5>username: </h5>
+<pre>{{ miFormulario.get('username')?.errors | json }}</pre>
+
+<h5>password: </h5>
+<pre>{{ miFormulario.get('password')?.errors | json }}</pre>
+
+<h5>password2: </h5>
+<pre>{{ miFormulario.get('password2')?.errors | json }}</pre>
